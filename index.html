@@ -1,27 +1,90 @@
-<!Doctype HTML>
-<html>
-    <head>
-        <!-- TODO: Meta tags -->
-        <title>The Bank Statement Calculator</title>
-    </head>
-    <body>
-        <header>
-            <!-- TODO: App Title -->
-        </header>
-        <main>
-            <!-- TODO: Container Div -->
-                <!-- TODO: Form Tags -->
-                    <!-- TODO: Table Tags-->
-                        <!-- TODO:  Sign-up/Sign-in Buttons -->
-                        <!-- TODO:  User Information Div -->
-                        <!-- TODO: Submit Button -->
-        </main>
-        <footer>
-            <!-- TODO: Copyright Info -->
-            <!-- TODO: Social Media Links -->
-            <!-- TODO: Legal & Privacy Links -->
-            <!-- TODO: About Links -->
-            <!-- TODO: Sitemap Link -->
-        </footer>
-    </body>
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="Interest-bearing Account Calculator"/>
+    <meta name="keywords" content="APY, calculator, bank, statement, interest, balance, prediction">
+    <meta name="author" content="Omie Walls"/>
+
+    <title>The Bank Statement Calculator</title>
+
+    <link rel="stylesheet" type="text/css" href="http://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css">
+    <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css">
+    <link rel="stylesheet/less" href="styles/index.less" type="text/css" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="title-bar" id="title-area" data-responsive-toggle="main-menu" data-hide-for="medium">
+            <button class="menu-icon" type="button" data-toggle></button>
+            <div class="title-bar-title">Menu</div>
+        </div>
+        <div class="top-bar">
+            <!-- Left Side -->
+            <div class="top-bar-left">
+                <ul class="menu">
+                    <h2>Banking Tools Collection</h2>
+                </ul>
+            </div>
+            <!-- Right Side -->
+            <div class="top-bar-right">
+                <ul class="menu" id ="search-menu">
+                    <!-- Search Bar/Button -->
+                    <li><input type="search" placeholder="Search" id="search-bar"></li>
+                    <li><button type="button" class="button" id="search-btn">Search</button></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="medium-12 columns">
+                <img src="img/logo-expanded.png" id="logo" alt="company logo">
+            </div>
+            <div class="medium-8 columns" id="ad">
+                <img src="http://placehold.it/900x175&text=Responsive Ads - ZURB Playground/333" alt="advertisement for deep fried Twinkies">
+            </div>
+        </div>
+
+        <br>
+
+        </div>
+        <div class="top-bar" id="app-header">
+            <h3>Bank Statment Summarizer</h3>
+        </div>
+    </header>
+    <br>
+    <div class="row">
+        <!-- TODO: Statement Summary Body -->
+        <div class="medium-8 columns">
+            <div id="summary-output"></div>
+        </div>
+        <div class="medium-4 columns">
+            <!-- TODO: Add Withdrawals and Deposits Input Form -->
+            <div id="summary-input" class="transaction-input"> </div>
+
+        </div>
+    </div>
+    <footer>
+        <div class="row expanded">
+            <div class="medium-6 columns">
+                <ul class="menu">
+                    <li><a href="#">Legal</a></li>
+                    <li><a href="#">Future Developments</a></li>
+                    <li><a href="#">About</a></li>
+                </ul>
+            </div>
+            <div class="medium-6 columns">
+                <ul class="menu align-right">
+                    <li class="menu-text">Copyright © 2016 Omie Walls</li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="http://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
+    <script>
+    $(document).foundation();
+    </script>
+</body>
 </html>

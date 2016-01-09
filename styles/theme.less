@@ -1,0 +1,92 @@
+@import "colors.less";
+
+body {
+    background-color: @lighter-primary;
+    font-family: sans-serif;
+}
+ul li:last-child {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;}
+h3 {
+    text-align: center;
+    color: @dark-secondary-one;
+    background-color: @light-complement;
+    align-content: center;
+
+}
+#ad {
+    display: none;
+}
+#app-header {
+    background-color: @light-complement;
+}
+@media screen and (max-width: 640px) {
+    img {
+        content: url(../img/logo.png);
+    }
+}
+
+img {
+    border-radius: 5px;
+}
+.top-bar {
+    background-color: @primary;
+    margin: 10px;
+    border-radius: 5px;
+}
+h2 {
+    background-color: @primary;
+}
+
+footer {
+    background-color: @darker-secondary-one;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+#output-preview {
+    background-color: @darker-neutral;
+}
+#search-btn {
+    background-color: @darker-secondary-one;
+}
+#search-bar {
+    background-color: @neutral;
+}
+.menu li {
+    background-color: @darker-secondary-one;
+}
+#search-menu {
+    padding-top: 20px;
+    background-color: @primary;
+}
+#logo {
+    width: 100%;
+}
+.title-bar {
+    margin-top: 10px;
+    background-color: @darker-secondary-one;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+.title-bar-title {
+    background-color: @darker-secondary-one;
+}
+.transaction-input {
+    height: auto;
+    background-color: @white;
+}
+#summary-input {
+    min-height: 450px;
+    width: auto;
+    margin-bottom: 2%;
+    background-color: @neutral;
+    border-radius: 5px;
+}
+#summary-output {
+    min-height: 450px;
+    background-color: @white;
+    width: auto;
+    margin-bottom: 2%;
+    background-color: @neutral;
+    border-radius: 5px;
+}
