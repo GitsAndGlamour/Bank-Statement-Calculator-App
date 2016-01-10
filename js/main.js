@@ -32,5 +32,4 @@ Objective 1: Create an interactive form that posts account data to the account s
     5. Review & Submit Data
 
 Objective 2: Display accurate account summary details and store user-input data
-
 */
