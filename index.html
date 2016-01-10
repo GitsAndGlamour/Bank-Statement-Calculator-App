@@ -12,12 +12,12 @@
     <link rel="stylesheet" type="text/css" href="http://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css">
     <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css">
     <link rel="stylesheet/less" href="styles/index.less" type="text/css" />
-    <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
 </head>
 <body>
     <header>
         <div class="title-bar" id="title-area" data-responsive-toggle="main-menu" data-hide-for="medium">
             <button class="menu-icon" type="button" data-toggle></button>
+            <!-- Menu Bar -->
             <div class="title-bar-title">Menu</div>
         </div>
         <div class="top-bar">
@@ -30,36 +30,172 @@
             <!-- Right Side -->
             <div class="top-bar-right">
                 <ul class="menu row" id ="search-menu">
-                    <!-- Search Bar/Button -->
+                    <!-- Search Bar -->
                     <li class="small-8 columns"><input type="search" placeholder="Search" id="search-bar"></li>
                     <li class="small-4 columns"><button type="button" class="button" id="search-btn">Search</button></li>
                 </ul>
             </div>
         </div>
 
-        <div class="row">
-            <div class="medium-12 columns">
-                <img src="img/logo-expanded.png" id="logo" alt="company logo">
-            </div>
-        </div>
-
         <br>
 
-        </div>
-        <div class="top-bar" id="app-header">
-            <h3>Bank Statment Summarizer</h3>
-        </div>
-    </header>
-    <br>
-    <div class="row">
-        <!-- TODO: Statement Summary Body -->
-        <div class="medium-8 columns">
-            <div id="summary-output"></div>
+    </div>
+    <div class="top-bar" id="app-header">
+        <!-- App Title -->
+        <h3>Bank Statment Summarizer</h3>
+    </div>
+</header>
+<br>
+<div class="row">
+    <!-- Statement Summary Body -->
+    <div class="medium-8 columns">
+        <!-- Display Contents -->
+        <div id="contents">
+            <h4>Account Summary</h4>
+            <!-- Summary Div -->
+            <div id="summary-output">
+                <!-- Balance Summary -->
+                <table id="balance-summary">
+                    <tr><td colspan="3"><h5>Balance Summary</h5></td></tr>
+                    <tr>
+                        <td><p>09/29</p></td>
+                        <td><p>Beginning Balance:</p></td>
+                        <td><p>$50.00</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>3</p></td>
+                        <td><p>Withdrawals / Debits:</p></td>
+                        <td><p>$(325.00)</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>3</p></td>
+                        <td><p>Deposits / Credits:</p></td>
+                        <td><p>$250,012.32</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>10/28</p></td>
+                        <td><p>Ending Balance:</p></td>
+                        <td><p>$249,737.32</p></td>
+                    </tr>
+                    <!-- Interest Summary -->
+                    <table id="interest-summary">
+                        <tr><td colspan="3"><h5>Interest Summary</h5></td></tr>
+                        <tr>
+                            <td><p>Interest Earned:</p></td>
+                            <td><p>$12.32</p></td>
+                        </tr>
+                        <tr>
+                            <td><p>Number of Days in Period:</p></td>
+                            <td><p>30</p></td>
+                        </tr>
+                        <tr>
+                            <td><p>Annual Percentage Yield Earned:</p></td>
+                            <td><p>0.06%</p></td>
+                        </tr>
+                        <tr>
+                            <td><p>Interest Earned YTD:</p></td>
+                            <td><p>$12.32</p></td>
+                        </tr>
+                    </table>
+                </div>
+                <!-- Transactions Div -->
+                <div id="transactions">
+                    <!-- Withdrawal/Debits -->
+                    <table id="withdrawals-debits">
+                        <tr>
+                            <td colspan="2"><h5>Withdrawals / Debits</h5></td>
+                            <td>3 items totaling $325</td>
+                        </tr>
+                        <tr>
+                            <td>Date</td>
+                            <td>Amount</td>
+                            <td>Description</td>
+
+                        </tr>
+                        <tr>
+                            <td>09/29</td>
+                            <td>15.00</td>
+                            <td>WIRE TRANSFER FEE</td>
+                        </tr>
+                        <tr>
+                            <td>10/26</td>
+                            <td>50.00</td>
+                            <td>WITHDRAWAL</td>
+                        </tr>
+                        <tr>
+                            <td>10/26</td>
+                            <td>260.00</td>
+                            <td>WITHDRAWAL</td>
+                        </tr>
+                    </table>
+                    <!-- Deposits/Credits -->
+                    <table id="deposits-credits">
+                        <tr>
+                            <td colspan="2"><h5>Deposits / Credits</h5></td>
+                            <td>3 items totaling $250,012.32</td>
+                        </tr>
+                        <tr>
+                            <td>Date</td>
+                            <td>Amount</td>
+                            <td>Description</td>
+
+                        </tr>
+                        <tr>
+                            <td>09/29</td>
+                            <td>250,000.00</td>
+                            <td>INCOMING WIRE TRANSFER</td>
+                        </tr>
+                        <tr>
+                            <td>10/28</td>
+                            <td>6.16</td>
+                            <td>APY INTEREST</td>
+                        </tr>
+                        <tr>
+                            <td>10/28</td>
+                            <td>6.16</td>
+                            <td>BONUS INTEREST</td>
+                        </tr>
+                    </table>
+                </div>
+                <!-- Daily Balance Summary -->
+                <table id="daily-balance-summary">
+                    <tr>
+                        <td colspan="8"><h5>Daily Balance Summary</h5></td>
+                    </tr>
+                    <tr>
+                        <td>Date</td>
+                        <td>Amount</td>
+                    </tr>
+                    <tr>
+                        <td>10/26</td>
+                        <td>249,725</td>
+                    </tr>
+                    <tr>
+                        <td>Date</td>
+                        <td>Amount</td>
+                    </tr>
+                    <tr>
+                        <td>09/29</td>
+                        <td>250,035.00</td>
+                    </tr>
+                    <tr>
+                        <td>Date</td>
+                        <td>Amount</td>
+                    </tr>
+                    <tr>
+                        <td>10/28</td>
+                        <td>249,737.32</td>
+                    </tr>
+                </table>
+            </div>
         </div>
         <div class="medium-4 columns">
-            <!-- TODO: Add Withdrawals and Deposits Input Form -->
-            <div id="summary-input" class="transaction-input"> </div>
+            <!-- TODO: Summary Input -->
+            <div id="summary-input">
+                <form>
 
+                </form>
+            </div>
         </div>
     </div>
     <footer>
@@ -78,10 +214,12 @@
             </div>
         </div>
     </footer>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="http://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
+    <script src="./js/main.js" type="text/javascript"></script>
     <script>
-    $(document).foundation();
+        $(document).foundation();
     </script>
 </body>
 </html>
