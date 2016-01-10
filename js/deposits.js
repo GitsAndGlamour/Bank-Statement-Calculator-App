@@ -17,7 +17,7 @@ var updateDeposits = function() {
     }
 };
 var deleteDeposit = function() {
-     splice(this.depositsIndex,1);
+    splice(this.depositsIndex,1);
 };
 var Deposits.prototype.selectPrevDeposit = function() {
     this.depositsIndex--;
