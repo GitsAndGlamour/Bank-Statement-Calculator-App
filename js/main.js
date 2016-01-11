@@ -41,20 +41,12 @@ $(document).ready( function() {
     startButton.click( function(){
         form.empty();
         form.append(formBuildPrompt);
-        form.append(startingBalancePrompt);
-        form.append(startDatePrompt);
-        form.append(endDateDiv);
-        form.append(standardAPYPrompt);
-        form.append(bonusAPYPrompt);
+        form.append(rowA);
+        form.append(rowB);
+        form.append(fieldSetA);
+        form.append(fieldSetB);
+        form.append(fieldSetC);
 
         form.append(finishPrompt).append(finishButton);
     }); // End startButton click
-    form.submit( function(event) {
-        if(!isError) {
-            console.log("No error returned.");
-            $("#finish-btn").addClass("success").text("Success!");
-        } else {
-            console.log("Error returned.");
-        }
-    }); //End finishButton click
 }); // End document ready

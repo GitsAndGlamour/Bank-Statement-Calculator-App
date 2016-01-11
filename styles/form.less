@@ -3,13 +3,40 @@
                 Global
 *****************************************/
 form {
-    padding: 20% 10%;
-    hr {
-        border-bottom: 1px solid #868383;
+    padding: 20% 5%;
+    fieldset {
+        box-shadow: 2px 2px 2.5px rgba(50, 50, 50, 0.75);
+        width: 100%;
+        border-radius: 2.5px;
+        padding: 1.5%;
+        background-color: lighten(@secondary-one, 35%);
+        margin-bottom: 2%
+    }
+    legend {
+        text-align: left;
+        margin-top: 10px;
+        color: darken(@lighter-neutral, 10%);
+        text-shadow: 1.5px 1.5px 2px rgba(75, 75, 75, 0.75);
+        border-radius: 2.5px;
+        background-color: darken(@neutral, 35%);;
+        box-shadow: 2px 2px 2.5px rgba(50, 50, 50, 0.75);
+    }
+    select {
+        font-size: 0.8em;
     }
     p {
         text-align: center;
     }
+    label {
+        font-size: 0.9em;
+    }
+    input {
+         border-radius: 5px !important;
+     }
+     h5 {
+         color: @darker-secondary-one;
+         font-size: 1.2em;
+     }
     .button {
         background-color: @darker-secondary-one;
         width: 80%;
@@ -18,5 +45,9 @@ form {
     }
     .button:hover {
         background-color: @secondary-one;
+    }
+    #finish-prompt {
+        background-color: @lighter-neutral;
+        border-radius: 5px;
     }
 }
