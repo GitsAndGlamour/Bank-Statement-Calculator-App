@@ -1,6 +1,7 @@
 var isError = false;
-var form = document.getElementsByTagName("form");
-form.submit( function catchDateError() {
+var isDateError = false;
+var form = $("form");
+form.submit( function catchDateError(event) {
     var message, start, end;
     message = document.getElementById("finish-prompt");
     start = document.getElementById("start-date").value;
@@ -15,13 +16,14 @@ form.submit( function catchDateError() {
         message.innerHTML = "<b>DATE INPUT ERROR:</b> " + err + "<br> <u>    User Input    </u> <br>end date: " + end + "<br>start date: " + start;
         $("#end-date-label").append(message);
         $(".date-input").css("border-color", "red");
-        $(this).addClass("alert");
-        $(this).text("Try again");
+        $("#finish-btn").addClass("alert").text("Try again");
         console.log("Date error.");
         isDateError = true;
+        event.preventDefault();
     }
-if($(this).text() != "Try again") {
+//if(!isDateError || ) //TODO: 
+if(isError == false) {
     console.log("Date approved.");
 }
 
-}); // End finishButton click
+}); // End finishButton submit

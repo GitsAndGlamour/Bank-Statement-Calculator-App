@@ -44,18 +44,16 @@ $(document).ready( function() {
         form.append(startingBalancePrompt);
         form.append(startDatePrompt);
         form.append(endDateDiv);
-        form.append(standardApyPrompt);
-        form.append(bonusApyPrompt);
+        form.append(standardAPYPrompt);
+        form.append(bonusAPYPrompt);
 
         form.append(finishPrompt).append(finishButton);
     }); // End startButton click
     form.submit( function(event) {
         if(!isError) {
-            console.log("No date error returned.");
-            $(this).addClass("success");
-            $(this).text("Success!");
+            console.log("No error returned.");
+            $("#finish-btn").addClass("success").text("Success!");
         } else {
-            event.preventDefault();
             console.log("Error returned.");
         }
     }); //End finishButton click
