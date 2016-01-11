@@ -1,27 +1,228 @@
-<!Doctype HTML>
-<html>
-    <head>
-        <!-- TODO: Meta tags -->
-        <title>The Bank Statement Calculator</title>
-    </head>
-    <body>
-        <header>
-            <!-- TODO: App Title -->
-        </header>
-        <main>
-            <!-- TODO: Container Div -->
-                <!-- TODO: Form Tags -->
-                    <!-- TODO: Table Tags-->
-                        <!-- TODO:  Sign-up/Sign-in Buttons -->
-                        <!-- TODO:  User Information Div -->
-                        <!-- TODO: Submit Button -->
-        </main>
-        <footer>
-            <!-- TODO: Copyright Info -->
-            <!-- TODO: Social Media Links -->
-            <!-- TODO: Legal & Privacy Links -->
-            <!-- TODO: About Links -->
-            <!-- TODO: Sitemap Link -->
-        </footer>
-    </body>
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="Interest-bearing Account Calculator"/>
+    <meta name="keywords" content="APY, calculator, bank, statement, interest, balance, prediction">
+    <meta name="author" content="Omie Walls"/>
+
+    <title>The Bank Statement Calculator</title>
+
+    <link rel="stylesheet" type="text/css" href="http://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css">
+    <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css">
+    <link rel="stylesheet/less" href="styles/index.less" type="text/css" />
+</head>
+<body>
+    <header>
+        <div class="title-bar" id="title-area" data-responsive-toggle="main-menu" data-hide-for="medium">
+            <button class="menu-icon" type="button" data-toggle></button>
+            <!-- Menu Bar -->
+            <div class="title-bar-title">Menu</div>
+        </div>
+        <div class="top-bar">
+            <!-- Left Side -->
+            <div class="top-bar-left">
+                <ul class="menu" id="search">
+                    <h2>Banking Tools Collection</h2>
+                </ul>
+            </div>
+            <!-- Right Side -->
+            <div class="top-bar-right">
+                <ul class="menu row" id ="search-menu">
+                    <!-- Search Bar -->
+                    <li class="small-8 columns"><input type="search" placeholder="Search" id="search-bar"></li>
+                    <li class="small-4 columns"><button type="button" class="button" id="search-btn">Search</button></li>
+                </ul>
+            </div>
+        </div>
+
+        <br>
+
+    </div>
+    <div class="top-bar" id="app-header">
+        <!-- App Title -->
+        <h3>Bank Statment Summarizer</h3>
+    </div>
+</header>
+<br>
+<div class="row">
+    <!-- Statement Summary Body -->
+    <div class="medium-8 columns">
+        <!-- Display Contents -->
+        <div id="contents">
+            <h4>Account Summary</h4>
+            <!-- Summary Div -->
+            <div id="summary-output">
+                <!-- Balance Summary -->
+                <table id="balance-summary">
+                    <tr><td colspan="3"><h5>Balance Summary</h5></td></tr>
+                    <tr>
+                        <td><p>09/29</p></td>
+                        <td><p>Beginning Balance:</p></td>
+                        <td><p>$50.00</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>3</p></td>
+                        <td><p>Withdrawals / Debits:</p></td>
+                        <td><p>$(325.00)</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>3</p></td>
+                        <td><p>Deposits / Credits:</p></td>
+                        <td><p>$250,012.32</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>10/28</p></td>
+                        <td><p>Ending Balance:</p></td>
+                        <td><p>$249,737.32</p></td>
+                    </tr>
+                    <!-- Interest Summary -->
+                    <table id="interest-summary">
+                        <tr><td colspan="3"><h5>Interest Summary</h5></td></tr>
+                        <tr>
+                            <td><p>Interest Earned:</p></td>
+                            <td><p>$12.32</p></td>
+                        </tr>
+                        <tr>
+                            <td><p>Number of Days in Period:</p></td>
+                            <td><p>30</p></td>
+                        </tr>
+                        <tr>
+                            <td><p>Annual Percentage Yield Earned:</p></td>
+                            <td><p>0.06%</p></td>
+                        </tr>
+                        <tr>
+                            <td><p>Interest Earned YTD:</p></td>
+                            <td><p>$12.32</p></td>
+                        </tr>
+                    </table>
+                </div>
+                <!-- Transactions Div -->
+                <div id="transactions">
+                    <!-- Withdrawal/Debits -->
+                    <table id="withdrawals-debits">
+                        <tr>
+                            <td colspan="2"><h5>Withdrawals / Debits</h5></td>
+                            <td>3 items totaling $325</td>
+                        </tr>
+                        <tr>
+                            <td>Date</td>
+                            <td>Amount</td>
+                            <td>Description</td>
+
+                        </tr>
+                        <tr>
+                            <td>09/29</td>
+                            <td>15.00</td>
+                            <td>WIRE TRANSFER FEE</td>
+                        </tr>
+                        <tr>
+                            <td>10/26</td>
+                            <td>50.00</td>
+                            <td>WITHDRAWAL</td>
+                        </tr>
+                        <tr>
+                            <td>10/26</td>
+                            <td>260.00</td>
+                            <td>WITHDRAWAL</td>
+                        </tr>
+                    </table>
+                    <!-- Deposits/Credits -->
+                    <table id="deposits-credits">
+                        <tr>
+                            <td colspan="2"><h5>Deposits / Credits</h5></td>
+                            <td>3 items totaling $250,012.32</td>
+                        </tr>
+                        <tr>
+                            <td>Date</td>
+                            <td>Amount</td>
+                            <td>Description</td>
+
+                        </tr>
+                        <tr>
+                            <td>09/29</td>
+                            <td>250,000.00</td>
+                            <td>INCOMING WIRE TRANSFER</td>
+                        </tr>
+                        <tr>
+                            <td>10/28</td>
+                            <td>6.16</td>
+                            <td>APY INTEREST</td>
+                        </tr>
+                        <tr>
+                            <td>10/28</td>
+                            <td>6.16</td>
+                            <td>BONUS INTEREST</td>
+                        </tr>
+                    </table>
+                </div>
+                <!-- Daily Balance Summary -->
+                <table id="daily-balance-summary">
+                    <tr>
+                        <td colspan="8"><h5>Daily Balance Summary</h5></td>
+                    </tr>
+                    <tr>
+                        <td>Date</td>
+                        <td>Amount</td>
+                    </tr>
+                    <tr>
+                        <td>10/26</td>
+                        <td>249,725</td>
+                    </tr>
+                    <tr>
+                        <td>Date</td>
+                        <td>Amount</td>
+                    </tr>
+                    <tr>
+                        <td>09/29</td>
+                        <td>250,035.00</td>
+                    </tr>
+                    <tr>
+                        <td>Date</td>
+                        <td>Amount</td>
+                    </tr>
+                    <tr>
+                        <td>10/28</td>
+                        <td>249,737.32</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="medium-4 columns">
+            <!-- TODO: Summary Input -->
+            <div id="summary-input">
+                <form name="statement-form">
+
+                </form>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="row expanded">
+            <div class="medium-6 columns">
+                <ul class="menu footer">
+                    <li><a href="#">Legal</a></li>
+                    <li><a href="#">Future Developments</a></li>
+                    <li><a href="#">About</a></li>
+                </ul>
+            </div>
+            <div class="medium-6 columns">
+                <ul class="menu align-right">
+                    <li class="menu-text">Copyright © 2016 Omie Walls</li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="http://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
+    <script src="js/caclulate.js" type="text/javascript"></script>
+    <script src="./js/ui/form_ui.js" type="text/javascript"></script>
+    <script src="./js/ui/form_validate_ui.js" type="text/javascript"></script>
+    <script src="./js/main.js" type="text/javascript"></script>
+    <script>
+    $(document).foundation();
+    </script>
+</body>
 </html>

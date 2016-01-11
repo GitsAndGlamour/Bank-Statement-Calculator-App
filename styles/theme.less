@@ -1,0 +1,175 @@
+@import "colors.less";
+/****************************************
+                Global
+*****************************************/
+body {
+    background-color: @lighter-neutral;
+    font-family: sans-serif;
+}
+footer {
+    background-color: @darker-secondary-one;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    color: @lighter-neutral;
+    a {
+        color: @lighter-secondary-one;
+    }
+}
+header {
+    ul li:first-child {
+        background-color: @neutral;
+    }
+    ul li:last-child {
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
+}
+table {
+    margin: auto;
+    table tr:first-child {
+        text-align: center;
+    }
+}
+img {
+    border-radius: 5px;
+}
+h2 {
+    background-color: @secondary-one;
+    color: #ddd;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, .4);
+}
+h4,
+h5 {
+    text-align: center;
+    color: @secondary-one;
+}
+/****************************************
+          Header Classes & Id's
+*****************************************/
+.top-bar {
+    background-color: @secondary-one;
+    margin: 10px;
+    border-radius: 5px;
+}
+.title-bar-title,
+.menu li,
+#title-area,
+#search-btn {
+    background-color: @darker-secondary-one;
+    .title-bar {
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
+    #search-btn:hover {
+        color: @lighter-secondary-one;
+    }
+}
+#app-header {
+    background-color: @neutral;
+    h3 {
+        text-align: center;
+        color: @dark-secondary-one;
+        align-content: center;
+    }
+}
+#search-menu {
+    padding-top: 20px;
+    background-color: @secondary-one;
+}
+#search-bar {
+    background-color: @neutral;
+    width: 100%;
+}
+/****************************************
+            Input/Output
+*****************************************/
+#contents {
+    min-height: 450px;
+    width: auto;
+    margin-bottom: 2%;
+    background-color: @neutral;
+    border-radius: 5px;
+    padding-bottom: 2%;
+}
+#summary-input {
+    min-height: 450px;
+    width: auto;
+    margin-bottom: 2%;
+    background-color: @neutral;
+    border-radius: 5px;
+}
+#summary-output {
+    display: inline-flex;
+}
+#transactions {
+    padding: 2%;
+    display: inline-flex;
+    font-size: 0.75em;
+}
+#interest-summary,
+#balance-summary {
+    margin-left: 5%;
+    #balance-summary tr td:nth-child(3n) {
+        text-align: right;
+    }
+    #interest-summary tr td:nth-child(2n) {
+        text-align: right;
+    }
+}
+/****************************************
+            Media Queries
+*****************************************/
+@media screen and (max-width: 640px) {
+    table {
+        width: 90%;
+        margin-bottom: 10%;
+    }
+    .top-bar {
+        margin: 0%;
+        width: 100%;
+        border-top-left-radius: 0px;
+        border-top-right-radius: 0px;
+    }
+    #app-header {
+        display: none;
+    }
+    #summary-output,
+    #transactions {
+        display: block;
+    }
+}
+@media screen and (min-width: 640px) and (max-width: 1200px) {
+    table {
+        width: 90%;
+        margin-bottom: 5%;
+    }
+    .top-bar {
+        margin: 0%;
+        width: 100%;
+        border-top-left-radius: 0px;
+        border-top-right-radius: 0px;
+    }
+    #app-header {
+        display: none;
+    }
+    #summary-output,
+    #transactions {
+        display: block;
+    }
+}
+@media screen and (min-width: 1200px) {
+    #contents {
+        padding-bottom: 2%
+    }
+    #balance-summary,
+    #widthdrawals-debits,
+    #deposits-credits {
+        margin-left: 2.5%;
+    }
+    #interest-summary {
+        margin-left: 10%;
+    }
+    #transactions {
+        margin-left: 0.5%;
+    }
+}
