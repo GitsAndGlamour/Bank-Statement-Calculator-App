@@ -20,12 +20,12 @@ var periodLengthInput = $('<input id="period-length" type="number" placeholder="
 var endDateCyclePrompt = $('<label>Choose the last business day of the month: </label>');
 var endDateCycleInput = $('<input id="cycle-date" type="checkbox" name="enddate" />');
 
-var standardApyPrompt = $('<label>APY%: </label>');
-var standardAPYInput = $('<input id="standard-apy" type="number" placeholder="0.00%" />');
+var standardAPYPrompt = $('<label>APY%: </label>');
+var standardAPYInput = $('<input id="standard-apy" type="number" placeholder="0.00%" min="0" step="0.01" />');
 var standardAPYSelect = displayAPYrates();
 
-var bonusApyPrompt = $('<label>Bonus APY$: </label>');
-var bonusAPYInput = $('<input id="bonus-apy" type="number" placeholder="0.00%" />');
+var bonusAPYPrompt = $('<label>Bonus APY$: </label>');
+var bonusAPYInput = $('<input id="bonus-apy" type="number" placeholder="0.00%"  min="0" step="0.01" />');
 var bonusAPYDoubleCheckbox = $('<label><input type="checkbox" name="currentapy" />Current APY%</label>');
 
 var finishPrompt = $('<p id="finish-prompt">To submit the statement and add Withdrawals or Deposits, click here:');
@@ -37,14 +37,15 @@ var orPromptA =$('<p> - or - </p>');
 var orPromptB =$('<p> - or - </p>');
 var orPromptC =$('<p> - or - </p>');
 var orPromptD =$('<p> - or - </p>');
+var hrA = $('<hr width="75%" size="2" color="black">');
+var hrB = $('<hr width="75%" size="2" color="black">');
 
 startingBalancePrompt.append(startingBalanceInput);
 startDatePrompt.append(startDateInput);
 endDatePrompt.append(endDateInput);
 periodLengthPrompt.append(periodLengthInput);
 endDateCyclePrompt.append(endDateCycleInput);
-endDateDiv.append(endDatePrompt).append(orPromptA).append(periodLengthPrompt).append(orPromptB).append(endDateCyclePrompt);
-standardApyPrompt.append(standardAPYInput).append(orPromptC).append(standardAPYSelect);
-bonusApyPrompt.append(bonusAPYInput).append(orPromptD).append(bonusAPYDoubleCheckbox);
-
-startingBalanceInput.attr("")
+endDateDiv.append(endDatePrompt).append(orPromptA).append(periodLengthPrompt).append(orPromptB).append(endDateCyclePrompt).append(hrA);
+standardAPYSelect.append(hrB);
+standardAPYPrompt.append(standardAPYInput).append(orPromptC).append(standardAPYSelect).append(hrB);
+bonusAPYPrompt.append(bonusAPYInput).append(orPromptD).append(bonusAPYDoubleCheckbox);
