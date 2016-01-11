@@ -20,8 +20,11 @@ var getEndDateFromCycle = function(startDate) {
        endDate.setDate(26);
        if(endDate.getMonth() == 10 && isThanksgiving(endDate,25)) {
            endDate.setDate(24);
+       } else if(endDate.getMonth() == 11) {
+           endDate.setDate(24);
        }
     }
+    return endDate;
 };
 var isThanksgiving = function(endDate, day) {
     var ref = new Date(endDate);
@@ -40,4 +43,28 @@ var isThanksgiving = function(endDate, day) {
         }
     }
     return false;
+};
+var displayAPYrates = function() {
+    var APYrates = [
+        [1, "Rewards Checking", 1.25],
+        [2, "Platinum Checking", 0.71],
+        [3, "High Yield Savings", 0.61],
+        [4, "Money Market Savings", 0.75],
+        [5, "3 month", 0.15],
+        [6, "6 month", 0.25],
+        [7, "12 month", 0.55],
+        [8, "24 moth", 0.7],
+        [9, "36 month", 0.9],
+        [10, "48 month", 1.05],
+        [11, "60 month", 1.35]
+    ];
+
+    var APYselect = $("<select></select>");
+    for(var i = 0; i < APYrates.length; i++) {
+        var APYoption = $('<option></option>');
+        APYoption.attr("value", Number(APYrates[i][2]));
+        APYoption.text(APYrates[i][1] + ' - ' + APYrates[i][2] + '%');
+        APYselect.append(APYoption);
+    }
+    return APYselect;
 };

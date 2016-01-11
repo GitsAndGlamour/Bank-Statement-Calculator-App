@@ -33,3 +33,25 @@ Objective 1: Create an interactive form that posts account data to the account s
 
 Objective 2: Display accurate account summary details and store user-input data
 */
+var form = $("form");
+$(document).ready( function() {
+
+    form.append(startPrompt).append(startButton);
+
+    startButton.click( function(){
+        form.empty();
+        form.append(formBuildPrompt);
+        form.append(startingBalancePrompt);
+        form.append(startDatePrompt);
+        form.append(endDateDiv);
+        form.append(standardApyPrompt);
+        form.append(bonusApyPrompt);
+
+        form.append(finishPrompt).append(finishButton);
+    }); // End startButton click
+    finishButton.click( function(){
+        event.preventDefault(event);
+        $(this).addClass("success");
+        $(this).text("Success!");
+    }); // End finishButton click
+}); // End document ready
