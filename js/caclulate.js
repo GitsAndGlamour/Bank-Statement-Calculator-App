@@ -66,5 +66,6 @@ var displayAPYrates = function() {
         APYoption.text(APYrates[i][1] + ' - ' + APYrates[i][2] + '%');
         APYselect.append(APYoption);
     }
+    APYselect.attr("id","standard-apy-select");
     return APYselect;
 };

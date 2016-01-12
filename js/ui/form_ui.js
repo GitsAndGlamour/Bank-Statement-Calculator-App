@@ -5,7 +5,7 @@ var startButton = $('<button type="button" class="button" id="start-btn">Start</
 var formBuildPrompt = $('<h5>Please Input the following values.</h5>');
 
 var startingBalancePrompt = $('<label for="starting-balance" class="right inline">Starting Balance</label>');
-var startingBalanceInput = $('<input id="starting-balance" type="number" name="startingbalance" placeholder="25.00" min="0" autofocus="autofocus" required="required" />');
+var startingBalanceInput = $('<input id="starting-balance" type="number" name="startingbalance" placeholder="25.00" min="0" step="0.01" autofocus="autofocus" required="required" />');
 
 var startDatePrompt = $('<label for="start-date" class="right inline">Start Date</label>');
 var startDateInput = $('<input id="start-date" class="date-input" type="date" placeholder="mm/dd/yyyy" required="required" />');
@@ -20,13 +20,16 @@ var periodLengthInput = $('<input id="period-length" type="number" placeholder="
 var endDateCyclePrompt = $('<label>Choose the last business day of the month: </label>');
 var endDateCycleInput = $('<input id="cycle-date" type="checkbox" name="enddate" />');
 
-var standardAPYPrompt = $('<label>APY</label>');
+var standardAPYPrompt = $('<label for="standard-apy-radio">APY</label>');
 var standardAPYInput = $('<input id="standard-apy" type="number" placeholder="0.00%" min="0" step="0.01" />');
+var standardAPYSelectPrompt = $('<label for="standard-apy-select-radio">Standard Rates</label>');
 var standardAPYSelect = displayAPYrates();
+var standardAPYInputRadio = $('<input id="standard-apy-radio" type="radio" value="1" name="standardapy" />');
+var standardAPYSelectRadio = $('<input id="standard-apy-select-radio" type="radio" value="0" name="standardapy" />');
 
 var bonusAPYPrompt = $('<label>Bonus APY</label>');
 var bonusAPYInput = $('<input id="bonus-apy" type="number" placeholder="0.00%"  min="0" step="0.01" />');
-var bonusAPYDoubleCheckbox = $('<label>Same as standard APY above: <input type="checkbox" name="currentapy" /></label>');
+var bonusAPYDoubleCheckbox = $('<label>Same as standard APY above: <input id="bonus-apy-checkbox" type="checkbox" name="currentapy" /></label>');
 
 var finishPrompt = $('<p id="finish-prompt">To submit the statement and add Withdrawals or Deposits, click here:');
 var finishButton = $('<button type="submit" class="button" id="finish-btn">Submit</button>');
@@ -80,8 +83,8 @@ var rowE = $('<div class="row"></div>');
 var rowECol1 = $('<div class="small-4 columns"></div>');
 var rowECol2 = $('<div class="small-8 columns"></div>');
 
-rowECol1.append(standardAPYInput);
-rowECol2.append(standardAPYSelect);
+rowECol1.append(standardAPYInputRadio).append(standardAPYPrompt).append(standardAPYInput);
+rowECol2.append(standardAPYSelectRadio).append(standardAPYSelectPrompt).append(standardAPYSelect);
 rowE.append(rowECol1).append(rowECol2);
 fieldSetB.append(fieldLegendB).append(rowE);
 
@@ -101,14 +104,3 @@ var orPromptC =$('<p> - or - </p>');
 var orPromptD =$('<p> - or - </p>');
 var hrA = $('<hr width="75%" size="2" color="black">');
 var hrB = $('<hr width="75%" size="2" color="black">');
-/*
-startingBalancePrompt.append(startingBalanceInput);
-startDatePrompt.append(startDateInput);
-endDatePrompt.append(endDateInput);
-periodLengthPrompt.append(periodLengthInput);
-endDateCyclePrompt.append(endDateCycleInput);
-endDateDiv.append(endDatePrompt).append(orPromptA).append(periodLengthPrompt).append(orPromptB).append(endDateCyclePrompt).append(hrA);
-standardAPYSelect.append(hrB);
-standardAPYPrompt.append(standardAPYInput).append(orPromptC).append(standardAPYSelect).append(hrB);
-bonusAPYPrompt.append(bonusAPYInput).append(orPromptD).append(bonusAPYDoubleCheckbox);
-*/

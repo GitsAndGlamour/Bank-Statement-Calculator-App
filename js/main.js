@@ -49,4 +49,5 @@ $(document).ready( function() {
 
         form.append(finishPrompt).append(finishButton);
     }); // End startButton click
+
 }); // End document ready
