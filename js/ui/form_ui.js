@@ -17,7 +17,7 @@ var endDateInput = $('<input id="end-date" class="date-input" type="date" name="
 var periodLengthPrompt = $('<label for="period-length" class="right inline">Number of Days in Balance Period</label>');
 var periodLengthInput = $('<input id="period-length" type="number" placeholder=" x days" name="enddate" min="1" max="90" />');
 
-var endDateCyclePrompt = $('<label>Choose the last business day of the month: </label>');
+var endDateCyclePrompt = $('<label onmouseover="">Choose the standard cycle date*: </label>');
 var endDateCycleInput = $('<input id="cycle-date" type="checkbox" name="enddate" />');
 
 var standardAPYPrompt = $('<label for="standard-apy-radio">APY</label>');
@@ -97,3 +97,13 @@ rowFCol1.append(bonusAPYPrompt);
 rowFCol2.append(bonusAPYDoubleCheckbox);
 rowF.append(rowFCol1).append(rowFCol2);
 fieldSetC.append(fieldLegendC).append(rowF);
+
+var info = "The standard end-of-month cycle date typically occurs around the ";
+info += "28th. This option provides a more realistic balance summary ";
+info += "which automatically avoids the cycle date ending on weekends and holidays.";
+popupDiv = $('<div id="info-popup"></div>');
+var infoPopup = $('<span></span>');
+infoPopup.text(info);
+popupDiv.append(infoPopup);
+fieldSetA.append(popupDiv);
+popupDiv.hide();

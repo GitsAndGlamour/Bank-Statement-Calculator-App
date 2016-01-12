@@ -1,35 +1,24 @@
 var isDateError = false;
 var form = $("form");
 
-form.submit( function() {
-    var startingBalanceValue = document.getElementById("starting-balance").value;
-    var startDateValue = document.getElementById("start-date").value;
-    var endDateValue = document.getElementById("end-date").value;
-    var balancePeriodValue = document.getElementById("period-length").value;
-    var standardAPYValue = document.getElementById("standard-apy").value;
-    var standardAPYSelectValue = document.getElementById("standard-apy-select").value;
-    var bonusAPYValue = document.getElementById("bonus-apy").value;
-    var standardAPYRadioValue = document.getElementById("standard-apy-radio").checked;
-    var standardAPYSelectRadioValue = document.getElementById("standard-apy-select-radio").checked;
-
-    console.log("startingBalanceValue: ", startingBalanceValue);
-    console.log("startDateValue: ", startDateValue);
-    console.log("balancePeriodValue: ", balancePeriodValue);
-    console.log("standardAPYValue: ", standardAPYValue);
-    console.log("standardAPYSelectValue: ", standardAPYSelectValue);
-    console.log("bonusAPYValue: ", bonusAPYValue);
-    console.log("standardAPYRadioValue", standardAPYRadioValue);
-    console.log("standardAPYSelectRadioValue", standardAPYSelectRadioValue);
-});
-
 form.submit( function catchDateError(event) {
-    var message, start, end;
+    var message, start, end, max, limit;
     message = document.getElementById("finish-prompt");
     start = document.getElementById("start-date").value;
-    end   = document.getElementById("end-date").value;
+    end   = document.getElementById("end-date").value
+    var startDate = new Date(start);
+    var maxDate = new Date(start);
+    var startValue = Number(startDate.getUTCDate());
+    limit = 90 + startValue;
+    var maxString;
+    maxDate.setUTCDate(limit);
+    max = dateToString(maxDate);
+    console.log("Start: ", start, "\nLimit: ", limit, "\nMax: ", max);
+
     try {
         if(start == end)  throw "The start and end dates cannot be the same.";
         if(start > end) throw "The end date cannot occur before the start date.";
+        if(end > max) throw "The end date cannot occur more than 90 days from the start date."
 
     }
     catch(err) {
@@ -57,18 +46,14 @@ standardAPYSelect.click(function () {
     document.getElementById("standard-apy-select-radio").checked = true;
 });
 periodLengthInput.change(function () {
-    var startDateValue = document.getElementById("start-date").value;
-    var balancePeriodValue = Number(document.getElementById("period-length").value);
-    var endDateValue = document.getElementById("end-date").value;
-    var startDay = new Date(startDateValue);
-    var endDay = new Date(startDateValue);
-    var startDayValue = Number(startDay.getUTCDate());
-    var ref = balancePeriodValue + startDayValue + 1;
-    var endDateString;
-    endDay.setUTCDate(ref);
-
-    endDateString = dateToString(endDay);
-    document.getElementById("end-date").value = endDateString;
-    console.log("End Date String: ", endDateString, "\n");
-    console.log("Start Date: ", startDateValue, "\nBalance Period: ", balancePeriodValue, "\nstart Day: ", startDayValue, "\nReference: ", ref, "\nEnd Date: ", document.getElementById("end-date").value);
+    document.getElementById("end-date").value = getEndDateFromPeriod();
+});
+endDateCycleInput.click(function () {
+    console.log("registered checkbox click");
+});
+endDateCyclePrompt.hover(function() {
+    popupDiv.show();
+});
+endDateCyclePrompt.mouseleave(function() {
+    popupDiv.hide();
 });

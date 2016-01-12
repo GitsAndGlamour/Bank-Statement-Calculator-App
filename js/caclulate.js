@@ -1,5 +1,20 @@
-var getEndDateFromPeriod = function(startDate, periodLength) {
-    var endDate = startDate + periodLength;
+var form = $("form");
+
+var getEndDateFromPeriod = function() {
+    var startDateValue = document.getElementById("start-date").value;
+    var balancePeriodValue = Number(document.getElementById("period-length").value);
+    var endDateValue = document.getElementById("end-date").value;
+    var startDay = new Date(startDateValue);
+    var endDay = new Date(startDateValue);
+    var startDayValue = Number(startDay.getUTCDate());
+    var ref = balancePeriodValue + startDayValue + 1;
+    var endDateString;
+
+    endDay.setUTCDate(ref);
+    endDateString = dateToString(endDay);
+    console.log("End Date String: ", endDateString, "\n");
+    console.log("Start Date: ", startDateValue, "\nBalance Period: ", balancePeriodValue, "\nstart Day: ", startDayValue, "\nReference: ", ref, "\nEnd Date: ", document.getElementById("end-date").value);
+    return endDateString;
 };
 var getEndDateFromCycle = function(startDate) {
     var endDate = new Date(startDate);
@@ -83,3 +98,24 @@ var dateToString = function(date) {
     dateString = year + "-" + month + "-" + day;
     return dateString;
 };
+
+form.submit( function getSubmitValues() {
+    var startingBalanceValue = document.getElementById("starting-balance").value;
+    var startDateValue = document.getElementById("start-date").value;
+    var endDateValue = document.getElementById("end-date").value;
+    var balancePeriodValue = document.getElementById("period-length").value;
+    var standardAPYValue = document.getElementById("standard-apy").value;
+    var standardAPYSelectValue = document.getElementById("standard-apy-select").value;
+    var bonusAPYValue = document.getElementById("bonus-apy").value;
+    var standardAPYRadioValue = document.getElementById("standard-apy-radio").checked;
+    var standardAPYSelectRadioValue = document.getElementById("standard-apy-select-radio").checked;
+
+    console.log("startingBalanceValue: ", startingBalanceValue);
+    console.log("startDateValue: ", startDateValue);
+    console.log("balancePeriodValue: ", balancePeriodValue);
+    console.log("standardAPYValue: ", standardAPYValue);
+    console.log("standardAPYSelectValue: ", standardAPYSelectValue);
+    console.log("bonusAPYValue: ", bonusAPYValue);
+    console.log("standardAPYRadioValue", standardAPYRadioValue);
+    console.log("standardAPYSelectRadioValue", standardAPYSelectRadioValue);
+});
