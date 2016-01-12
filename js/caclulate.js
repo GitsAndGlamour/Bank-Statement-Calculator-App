@@ -69,3 +69,17 @@ var displayAPYrates = function() {
     APYselect.attr("id","standard-apy-select");
     return APYselect;
 };
+var dateToString = function(date) {
+    var year = date.getFullYear();
+    var month = date.getMonth() + 1;
+    var day = date.getDate();
+    var dateString;
+    if (Number(month) < 10) {
+        month = "0" + month;
+    }
+    if (Number(day) < 10) {
+        day = "0" + day;
+    }
+    dateString = year + "-" + month + "-" + day;
+    return dateString;
+};

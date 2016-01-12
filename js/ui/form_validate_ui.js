@@ -22,15 +22,12 @@ form.submit( function() {
     console.log("standardAPYSelectRadioValue", standardAPYSelectRadioValue);
 });
 
-
-
 form.submit( function catchDateError(event) {
     var message, start, end;
     message = document.getElementById("finish-prompt");
     start = document.getElementById("start-date").value;
     end   = document.getElementById("end-date").value;
     try {
-        if(start.length == 0 || end.length == 0) throw "Date input fields cannot be left blank.";
         if(start == end)  throw "The start and end dates cannot be the same.";
         if(start > end) throw "The end date cannot occur before the start date.";
 
@@ -54,10 +51,24 @@ form.submit( function catchDateError(event) {
 }); // End finishButton submit
 
 standardAPYInput.click(function () {
-    console.log("TEST APY INPUT");
     document.getElementById("standard-apy-radio").checked = true;
 });
 standardAPYSelect.click(function () {
-    console.log("TEST APY SELECT");
     document.getElementById("standard-apy-select-radio").checked = true;
+});
+periodLengthInput.change(function () {
+    var startDateValue = document.getElementById("start-date").value;
+    var balancePeriodValue = Number(document.getElementById("period-length").value);
+    var endDateValue = document.getElementById("end-date").value;
+    var startDay = new Date(startDateValue);
+    var endDay = new Date(startDateValue);
+    var startDayValue = Number(startDay.getUTCDate());
+    var ref = balancePeriodValue + startDayValue + 1;
+    var endDateString;
+    endDay.setUTCDate(ref);
+
+    endDateString = dateToString(endDay);
+    document.getElementById("end-date").value = endDateString;
+    console.log("End Date String: ", endDateString, "\n");
+    console.log("Start Date: ", startDateValue, "\nBalance Period: ", balancePeriodValue, "\nstart Day: ", startDayValue, "\nReference: ", ref, "\nEnd Date: ", document.getElementById("end-date").value);
 });

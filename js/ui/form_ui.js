@@ -8,14 +8,14 @@ var startingBalancePrompt = $('<label for="starting-balance" class="right inline
 var startingBalanceInput = $('<input id="starting-balance" type="number" name="startingbalance" placeholder="25.00" min="0" step="0.01" autofocus="autofocus" required="required" />');
 
 var startDatePrompt = $('<label for="start-date" class="right inline">Start Date</label>');
-var startDateInput = $('<input id="start-date" class="date-input" type="date" placeholder="mm/dd/yyyy" required="required" />');
+var startDateInput = $('<input id="start-date" class="date-input" type="date" required="required" />');
 var endDateDiv = $('<div></div>');
 
 var endDatePrompt = $('<label for="end-date" class="right inline">End Date</label>');
-var endDateInput = $('<input id="end-date" class="date-input" type="date" placeholder="mm/dd/yyyy" name="enddate" required="required" />');
+var endDateInput = $('<input id="end-date" class="date-input" type="date" name="enddate" required="required" />');
 
 var periodLengthPrompt = $('<label for="period-length" class="right inline">Number of Days in Balance Period</label>');
-var periodLengthInput = $('<input id="period-length" type="number" placeholder=" x days" name="enddate" min="1" />');
+var periodLengthInput = $('<input id="period-length" type="number" placeholder=" x days" name="enddate" min="1" max="90" />');
 
 var endDateCyclePrompt = $('<label>Choose the last business day of the month: </label>');
 var endDateCycleInput = $('<input id="cycle-date" type="checkbox" name="enddate" />');
@@ -97,10 +97,3 @@ rowFCol1.append(bonusAPYPrompt);
 rowFCol2.append(bonusAPYDoubleCheckbox);
 rowF.append(rowFCol1).append(rowFCol2);
 fieldSetC.append(fieldLegendC).append(rowF);
-
-var orPromptA =$('<p> - or - </p>');
-var orPromptB =$('<p> - or - </p>');
-var orPromptC =$('<p> - or - </p>');
-var orPromptD =$('<p> - or - </p>');
-var hrA = $('<hr width="75%" size="2" color="black">');
-var hrB = $('<hr width="75%" size="2" color="black">');
