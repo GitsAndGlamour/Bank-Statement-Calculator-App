@@ -34,6 +34,7 @@ c. Description Category
 Objective 2: Display accurate account summary details and store user-input data
 */
 var form = $("form");
+var defaultBalance = "125.00";
 $(document).ready( function() {
 
     form.append(startPrompt).append(startButton);

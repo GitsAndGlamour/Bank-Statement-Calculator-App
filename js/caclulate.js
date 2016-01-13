@@ -1,8 +1,16 @@
 var form = $("form");
-
-var getEndDateFromPeriod = function() {
+var getDateDiffInDays = function(start, end) {
+    var startDateValue = start;
+    var endDateValue = end;
+    var startDate = new Date(startDateValue);
+    var endDate = new Date(endDateValue);
+    var timeDiff = Math.abs(endDate.getTime() - startDate.getTime()) + 1;
+    var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+    return diffDays;
+};
+var getEndDateFromPeriod = function(period) {
     var startDateValue = document.getElementById("start-date").value;
-    var balancePeriodValue = Number(document.getElementById("period-length").value);
+    var balancePeriodValue = period;
     var endDateValue = document.getElementById("end-date").value;
     var startDay = new Date(startDateValue);
     var endDay = new Date(startDateValue);
@@ -12,46 +20,51 @@ var getEndDateFromPeriod = function() {
 
     endDay.setUTCDate(ref);
     endDateString = dateToString(endDay);
-    console.log("End Date String: ", endDateString, "\n");
-    console.log("Start Date: ", startDateValue, "\nBalance Period: ", balancePeriodValue, "\nstart Day: ", startDayValue, "\nReference: ", ref, "\nEnd Date: ", document.getElementById("end-date").value);
     return endDateString;
 };
-var getEndDateFromCycle = function(startDate) {
-    var endDate = new Date(startDate);
-    endDate.setDate(28);
-        if(endDate.getMonth() == 10) {
-            if(isThanksgiving(endDate,28)) {
-            endDate.setDate(27);
-        } else if(isThanksgiving(endDate,27)) {
-            endDate.setDate(26);
+var getEndDateFromCycle = function(start) {
+    var startDateValue = new Date(start);
+    var endDateValue = new Date(start);
+    if (endDateValue.getUTCDate() >= 22) {
+        endDateValue.setUTCMonth(startDateValue.getUTCMonth() + 1);
+    }
+    endDateValue.setUTCDate(28);
+        if(endDateValue.getUTCMonth() == 10) {
+            if(isThanksgiving(endDateValue,28)) {
+            endDateValue.setUTCDate(27);
+        } else if(isThanksgiving(endDateValue,27)) {
+            endDateValue.setUTCDate(26);
         }
     }
-    if(endDate.getDay() == 6) {
-       endDate.setDate(27);
-       if(endDate.getMonth() == 10 && isThanksgiving(endDate,26)) {
-           endDate.setDate(25);
+    if(endDateValue.getDay() == 6) {
+       endDateValue.setUTCDate(27);
+       if(endDateValue.getUTCMonth() == 10 && isThanksgiving(endDateValue,26)) {
+           endDateValue.setUTCDate(25);
        }
-    } else if(endDate.getDay() == 0) {
-       endDate.setDate(26);
-       if(endDate.getMonth() == 10 && isThanksgiving(endDate,25)) {
-           endDate.setDate(24);
-       } else if(endDate.getMonth() == 11) {
-           endDate.setDate(24);
+   }
+   if(endDateValue.getDay() == 0) {
+       endDateValue.setUTCDate(26);
+       if(endDateValue.getUTCMonth() == 10 && isThanksgiving(endDateValue,25)) {
+           endDateValue.setUTCDate(24);
+       } else if(endDateValue.getUTCMonth() == 11) {
+           endDateValue.setUTCDate(24);
        }
     }
-    return endDate;
+    var endDateString = dateToString(endDateValue);
+console.log(endDateString);
+return endDateString;
 };
-var isThanksgiving = function(endDate, day) {
-    var ref = new Date(endDate);
+var isThanksgiving = function(end, day) {
+    var ref = new Date(end);
     var thanksgiving = new Date("November 01");
     thanksgiving.setFullYear(ref.getFullYear());
     var thursCount = 0;
     for(var i = 1; i <= 30; i++) {
-        thanksgiving.setDate(i);
+        thanksgiving.setUTCDate(i);
         if(thanksgiving.getDay() == 4) {
             thursCount++;
-            if(thurs == 4) {
-                if(thanksgiving.getDate() == day) {
+            if(thursCount == 4) {
+                if(thanksgiving.getUTCDate() == day) {
                     return true;
                 }
             }
@@ -86,8 +99,8 @@ var displayAPYrates = function() {
 };
 var dateToString = function(date) {
     var year = date.getFullYear();
-    var month = date.getMonth() + 1;
-    var day = date.getDate();
+    var month = date.getUTCMonth() + 1;
+    var day = date.getUTCDate();
     var dateString;
     if (Number(month) < 10) {
         month = "0" + month;

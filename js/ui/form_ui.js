@@ -18,7 +18,7 @@ var periodLengthPrompt = $('<label for="period-length" class="right inline">Numb
 var periodLengthInput = $('<input id="period-length" type="number" placeholder=" x days" name="enddate" min="1" max="90" />');
 
 var endDateCyclePrompt = $('<label onmouseover="">Choose the standard cycle date*: </label>');
-var endDateCycleInput = $('<input id="cycle-date" type="checkbox" name="enddate" />');
+var endDateCycleInput = $('<input id="cycle-date" type="checkbox">');
 
 var standardAPYPrompt = $('<label for="standard-apy-radio">APY</label>');
 var standardAPYInput = $('<input id="standard-apy" type="number" placeholder="0.00%" min="0" step="0.01" />');

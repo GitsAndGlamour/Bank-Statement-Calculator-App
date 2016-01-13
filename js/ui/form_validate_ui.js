@@ -44,16 +44,42 @@ standardAPYInput.click(function () {
 });
 standardAPYSelect.click(function () {
     document.getElementById("standard-apy-select-radio").checked = true;
+    document.getElementById("standard-apy").value = this.value;
+});
+endDateInput.change(function () {
+    var startDateValue = document.getElementById("start-date").value;
+    var endDateValue = document.getElementById("end-date").value;
+    document.getElementById("period-length").value = "" + getDateDiffInDays(startDateValue, endDateValue);
+    document.getElementById("cycle-date").checked = false;
 });
 periodLengthInput.change(function () {
-    document.getElementById("end-date").value = getEndDateFromPeriod();
+    var balancePeriodValue = Number(document.getElementById("period-length").value);
+    document.getElementById("end-date").value = getEndDateFromPeriod(balancePeriodValue);
+});
+periodLengthInput.click(function () {
+    document.getElementById("cycle-date").checked = false;
 });
 endDateCycleInput.click(function () {
-    console.log("registered checkbox click");
+    var startDateValue = document.getElementById("start-date").value;
+    var endDateValue = document.getElementById("end-date").value;
+    document.getElementById("end-date").value = getEndDateFromCycle(startDateValue);
+    document.getElementById("period-length").value = "" + getDateDiffInDays(startDateValue, endDateValue);
 });
 endDateCyclePrompt.hover(function() {
-    popupDiv.show();
+    popupDiv.show("slow");
 });
 endDateCyclePrompt.mouseleave(function() {
-    popupDiv.hide();
+    popupDiv.hide("slow");
+});
+bonusAPYInput.change(function() {
+    document.getElementById("bonus-apy-checkbox").checked = false;
+});
+bonusAPYDoubleCheckbox.click(function() {
+    var standardAPY;
+    if(document.getElementById("standard-apy-radio").checked == true) {
+        standardAPY = document.getElementById("standard-apy").value;
+    } else {
+        standardAPY = document.getElementById("standard-apy-select").value;
+    }
+    document.getElementById("bonus-apy").value = standardAPY;
 });
