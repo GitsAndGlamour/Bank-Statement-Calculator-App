@@ -4,7 +4,7 @@ var getDateDiffInDays = function(start, end) {
     var endDateValue = end;
     var startDate = new Date(startDateValue);
     var endDate = new Date(endDateValue);
-    var timeDiff = Math.abs(endDate.getTime() - startDate.getTime()) + 1;
+    var timeDiff = Math.abs(endDate.getTime() - startDate.getTime() +1);
     var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
     return diffDays;
 };
@@ -15,7 +15,7 @@ var getEndDateFromPeriod = function(period) {
     var startDay = new Date(startDateValue);
     var endDay = new Date(startDateValue);
     var startDayValue = Number(startDay.getUTCDate());
-    var ref = balancePeriodValue + startDayValue + 1;
+    var ref = balancePeriodValue + startDayValue;
     var endDateString;
 
     endDay.setUTCDate(ref);
@@ -25,10 +25,11 @@ var getEndDateFromPeriod = function(period) {
 var getEndDateFromCycle = function(start) {
     var startDateValue = new Date(start);
     var endDateValue = new Date(start);
-    if (endDateValue.getUTCDate() >= 22) {
-        endDateValue.setUTCMonth(startDateValue.getUTCMonth() + 1);
-    }
     endDateValue.setUTCDate(28);
+    if (startDateValue.getUTCDate() >= 22) {
+        endDateValue.setUTCMonth(startDateValue.getUTCMonth() + 1);
+        console.log(endDateValue);
+    }
         if(endDateValue.getUTCMonth() == 10) {
             if(isThanksgiving(endDateValue,28)) {
             endDateValue.setUTCDate(27);
@@ -38,18 +39,21 @@ var getEndDateFromCycle = function(start) {
     }
     if(endDateValue.getDay() == 6) {
        endDateValue.setUTCDate(27);
+       console.log(endDateValue);
        if(endDateValue.getUTCMonth() == 10 && isThanksgiving(endDateValue,26)) {
            endDateValue.setUTCDate(25);
        }
    }
    if(endDateValue.getDay() == 0) {
        endDateValue.setUTCDate(26);
+       console.log(endDateValue);
        if(endDateValue.getUTCMonth() == 10 && isThanksgiving(endDateValue,25)) {
            endDateValue.setUTCDate(24);
        } else if(endDateValue.getUTCMonth() == 11) {
            endDateValue.setUTCDate(24);
        }
     }
+    console.log(endDateValue);
     var endDateString = dateToString(endDateValue);
 console.log(endDateString);
 return endDateString;
@@ -108,6 +112,7 @@ var dateToString = function(date) {
     if (Number(day) < 10) {
         day = "0" + day;
     }
+    day = Number(day)-1;
     dateString = year + "-" + month + "-" + day;
     return dateString;
 };
