@@ -1,3 +1,4 @@
+/* Statement Object Constructor */
 function Statement(startBalance, startDate, endDate, standardAPY, bonusAPY) {
     this.startBalance = startBalance;
     this.startDate = startDate;

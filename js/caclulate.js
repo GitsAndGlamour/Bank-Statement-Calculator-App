@@ -1,71 +1,114 @@
-var form = $("form");
+/* Define form to be submitted */
+var form = $('form[name="create-statement"]');
+
+/* Get the difference between two dates in days
+ * @param string start - Start Date
+ * @param string end   - End Date
+ *
+ * @return number diffDays - Diference in days
+ */
 var getDateDiffInDays = function(start, end) {
     var startDateValue = start;
     var endDateValue = end;
     var startDate = new Date(startDateValue);
     var endDate = new Date(endDateValue);
-    var timeDiff = Math.abs(endDate.getTime() - startDate.getTime() +1);
+    var timeDiff = Math.abs(endDate.getTime() - startDate.getTime());
     var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+
     return diffDays;
 };
+/* Get the end date from a specified period of time
+ * @param number period - number of days to calculate the end date from
+ *
+ * @return string dateString - the End Date returned in string format
+ */
 var getEndDateFromPeriod = function(period) {
-    var startDateValue = document.getElementById("start-date").value;
-    var balancePeriodValue = period;
-    var endDateValue = document.getElementById("end-date").value;
-    var startDay = new Date(startDateValue);
-    var endDay = new Date(startDateValue);
-    var startDayValue = Number(startDay.getUTCDate());
-    var ref = balancePeriodValue + startDayValue;
-    var endDateString;
+    var start = document.getElementById("start-date").value;
+    var end = document.getElementById("end-date").value;
+    var startDate = new Date(start);
+    var endDate = new Date(end);
+    var startDay = Number(startDate.getUTCDate());
+    var endDay = Number(period) + startDay;
+    var dateString;
 
-    endDay.setUTCDate(ref);
-    endDateString = dateToString(endDay);
-    return endDateString;
+    endDate.setUTCDate(endDay);
+    dateString = dateToString(endDate);
+
+    return dateString;
 };
+
+/* Get the End Date from the 28th of every month as long as the 28th ends on a non-holiday weekday.
+ * If the 28th falls on a weekend, choose the preceeding Friday. If the 28th falls on or the day after a holiday,
+ * choose the day before the holiday.
+ *
+ * @param string start - starting date of the balance summary
+ */
 var getEndDateFromCycle = function(start) {
     var startDateValue = new Date(start);
     var endDateValue = new Date(start);
+
+    // Set Cycle Date: 28
     endDateValue.setUTCDate(28);
+
+    // IF: The Start Date is on or after the 22nd...
     if (startDateValue.getUTCDate() >= 22) {
+        //Set the End Date a month ahead.
         endDateValue.setUTCMonth(startDateValue.getUTCMonth() + 1);
-        console.log(endDateValue);
     }
+        //IF: The month is November...
         if(endDateValue.getUTCMonth() == 10) {
+            // And the 28th is on Thanksgiving...
             if(isThanksgiving(endDateValue,28)) {
+            // Set the End Date a day ahead of Thanksgiving.
             endDateValue.setUTCDate(27);
+          //ELSE IF: The day before the 28th is Thanksgiving...
         } else if(isThanksgiving(endDateValue,27)) {
+            // Set the End Date a day ahead of Thanksgiving.
             endDateValue.setUTCDate(26);
         }
     }
-    if(endDateValue.getDay() == 6) {
+    //IF: The 28th is on Saturday...
+    if(endDateValue.getUTCDay() == 6) {
+        //Set the End Date to the preceeding Friday.
        endDateValue.setUTCDate(27);
-       console.log(endDateValue);
+       //IF: That Friday is in November and the day before is Thanksgiving...
        if(endDateValue.getUTCMonth() == 10 && isThanksgiving(endDateValue,26)) {
+           //Set the End Date a day ahead of Thanksgiving.
            endDateValue.setUTCDate(25);
        }
    }
-   if(endDateValue.getDay() == 0) {
+   //IF: The 28th is on a Sunday...
+   if(endDateValue.getUTCDay() == 0) {
+       //Set the End Date to the preceeding Friday.
        endDateValue.setUTCDate(26);
-       console.log(endDateValue);
+       //IF: That Friday is November and the day before is Thanksgiving...
        if(endDateValue.getUTCMonth() == 10 && isThanksgiving(endDateValue,25)) {
+           //Set the End Date a day ahead of Thanksgiving.
            endDateValue.setUTCDate(24);
+           //ELSE IF: The 25th is in the Month of December (Otherwise known as Christmas)...
        } else if(endDateValue.getUTCMonth() == 11) {
+           //Set the End Date a day ahead of Christmas.
            endDateValue.setUTCDate(24);
        }
     }
-    console.log(endDateValue);
     var endDateString = dateToString(endDateValue);
-console.log(endDateString);
 return endDateString;
 };
-var isThanksgiving = function(end, day) {
-    var ref = new Date(end);
+
+/* Check to see if a given day of November is Thanksgiving
+ * @param string date - referential date used in order to get the full year
+ *
+ * @return boolean - return true if Thanksgiving, false if not.
+ */
+var isThanksgiving = function(date, day) {
+    var ref = new Date(date);
     var thanksgiving = new Date("November 01");
-    thanksgiving.setFullYear(ref.getFullYear());
     var thursCount = 0;
+    thanksgiving.setUTCFullYear(ref.getUTCFullYear());
+
     for(var i = 1; i <= 30; i++) {
         thanksgiving.setUTCDate(i);
-        if(thanksgiving.getDay() == 4) {
+        if(thanksgiving.getUTCDay() == 4) {
             thursCount++;
             if(thursCount == 4) {
                 if(thanksgiving.getUTCDate() == day) {
@@ -76,6 +119,11 @@ var isThanksgiving = function(end, day) {
     }
     return false;
 };
+/* display common APY rates in a select-type input element
+ *
+ * @return jQuery Object APYselect - the select-type input element
+ * holding all the apy rates as options.
+ */
 var displayAPYrates = function() {
     var APYrates = [
         [1, "Rewards Checking", 1.25],
@@ -101,8 +149,14 @@ var displayAPYrates = function() {
     APYselect.attr("id","standard-apy-select");
     return APYselect;
 };
+
+/* Get the yyyy-mm-dd string format of any date
+ * @param date date - referential date to be parsed into a string
+ *
+ * @return string dateString - parsed date
+ */
 var dateToString = function(date) {
-    var year = date.getFullYear();
+    var year = date.getUTCFullYear();
     var month = date.getUTCMonth() + 1;
     var day = date.getUTCDate();
     var dateString;
@@ -112,28 +166,6 @@ var dateToString = function(date) {
     if (Number(day) < 10) {
         day = "0" + day;
     }
-    day = Number(day)-1;
     dateString = year + "-" + month + "-" + day;
     return dateString;
 };
-
-form.submit( function getSubmitValues() {
-    var startingBalanceValue = document.getElementById("starting-balance").value;
-    var startDateValue = document.getElementById("start-date").value;
-    var endDateValue = document.getElementById("end-date").value;
-    var balancePeriodValue = document.getElementById("period-length").value;
-    var standardAPYValue = document.getElementById("standard-apy").value;
-    var standardAPYSelectValue = document.getElementById("standard-apy-select").value;
-    var bonusAPYValue = document.getElementById("bonus-apy").value;
-    var standardAPYRadioValue = document.getElementById("standard-apy-radio").checked;
-    var standardAPYSelectRadioValue = document.getElementById("standard-apy-select-radio").checked;
-
-    console.log("startingBalanceValue: ", startingBalanceValue);
-    console.log("startDateValue: ", startDateValue);
-    console.log("balancePeriodValue: ", balancePeriodValue);
-    console.log("standardAPYValue: ", standardAPYValue);
-    console.log("standardAPYSelectValue: ", standardAPYSelectValue);
-    console.log("bonusAPYValue: ", bonusAPYValue);
-    console.log("standardAPYRadioValue", standardAPYRadioValue);
-    console.log("standardAPYSelectRadioValue", standardAPYSelectRadioValue);
-});
